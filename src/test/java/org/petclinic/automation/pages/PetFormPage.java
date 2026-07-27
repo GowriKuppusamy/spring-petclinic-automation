@@ -17,7 +17,7 @@ public class PetFormPage extends BasePage {
     this.savePetButton = page.getByRole().button(new Page.GetByRoleOptions().setName("Save Pet"));
   }
 
-  public PetFormPage fillPet(string petName, String bornDate, String type) {
+  public PetFormPage fillPet(String petName, String bornDate, String type) {
     name.fill(petName);
     birthDate.fill(bornDate);
     typeSelect.selectOption(type);
