@@ -29,4 +29,8 @@ public class OwnersFindPage extends BasePage {
   public boolean hasErrorMessage() {
     return errorMsg.isVisible();
   }
+
+  public boolean isAt() {
+    return findOwnerButton.isVisible();
+  }
 }
