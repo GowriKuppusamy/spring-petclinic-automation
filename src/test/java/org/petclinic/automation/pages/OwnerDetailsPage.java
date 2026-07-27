@@ -4,7 +4,6 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
 public class OwnerDetailsPage extends BasePage {
-  private final Locator ownerInfoTable;
   private final Locator editOwnerButton;
   private final Locator addPetLink;
   private final Locator firstPetNameLink;
@@ -12,7 +11,6 @@ public class OwnerDetailsPage extends BasePage {
 
   public OwnerDetailsPage(Page page) {
     super(page);
-    this.ownerInfoTable = page.locator("table tr: text('Name')");
     this.editOwnerButton = page.getByRole().link(new Page.GetByRoleOptions().setName("Edit Owner"));
     this.addPetLink = page.getByRole().link(new Page.GetByRoleOptions().setName("Add New Pet"));
     this.firstPetNameLink = page.locator("table tr td a").first();
@@ -41,5 +39,23 @@ public class OwnerDetailsPage extends BasePage {
   public VisitFormPage goToAddVisit() {
     addVisitLink.first().click();
     return new VisitFormPage(page);
+  }
+
+  public String getOwnerName() {
+    Locator nameRow = page.locator("table tr::has-text('Name') td").first();
+    if (nameRow.count() == 0) {
+      return "";
+    }
+    return nameRow.innerText().trim();
+  }
+
+
+  public boolean hasPetName(String petName) {
+    return page.locator("table tr td:has-text('" + petName + "')").count() > 0;
+  }
+
+
+  public boolean hasVisitDescription(String desc) {
+    return page.locator("table tr td:has-text('" + desc + "')").count() > 0;
   }
 }
