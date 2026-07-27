@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="spring-petclinic-suite" parallel="methods" thread-count="1">
+  <test name="ui-and-api">
+    <packages>
+      <package name="org.petclinic.automation.tests.*"/>
+    </packages>
+  </test>
+</suite>
